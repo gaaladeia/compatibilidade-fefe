@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sistema de Compatibilidade Afetiva
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ================= INTRO ================= -->
+
+    <section
+        id="intro"
+        class="screen active"
+    >
+
+        <div class="heart">
+            ♡
+        </div>
+
+        <div class="eyebrow">
+            SISTEMA CONFIDENCIAL
+        </div>
+
+        <h1>
+            Sistema de<br>
+            <span>Compatibilidade Afetiva</span>
+        </h1>
+
+        <p class="subtitle">
+            Análise científica de uma relação
+            potencialmente perigosa.
+        </p>
+
+
+        <div class="notice">
+
+            <strong>
+                ⚠ AVISO
+            </strong>
+
+            <p>
+                Este sistema analisará cuidadosamente
+                os dados para determinar o nível de
+                compatibilidade entre vocês.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary"
+            onclick="startQuiz()"
+        >
+            INICIAR ANÁLISE
+        </button>
+
+    </section>
+
+
+
+    <!-- ================= QUIZ ================= -->
+
+    <section
+        id="quiz"
+        class="screen"
+    >
+
+        <div class="quiz-top">
+
+            <div class="row-between">
+
+                <span id="counter">
+                    ANÁLISE 1/8
+                </span>
+
+                <span id="percentage">
+                    12%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="question-card">
+
+            <div
+                class="eyebrow"
+                id="questionNumber"
+            >
+                PERGUNTA 01
+            </div>
+
+
+            <h2 id="questionTitle"></h2>
+
+
+            <p
+                id="questionSubtitle"
+                class="subtitle"
+            ></p>
+
+
+            <div
+                id="answerArea"
+                class="answer-area"
+            ></div>
+
+        </div>
+
+
+
+        <div class="nav">
+
+            <button
+                id="backButton"
+                class="secondary"
+                onclick="previousQuestion()"
+            >
+                ← VOLTAR
+            </button>
+
+
+            <button
+                id="nextButton"
+                class="primary"
+                onclick="nextQuestion()"
+            >
+                CONTINUAR →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= LOADING ================= -->
+
+    <section
+        id="loading"
+        class="screen"
+    >
+
+        <div class="loader"></div>
+
+        <div class="eyebrow">
+            PROCESSANDO DADOS
+        </div>
+
+
+        <h2 id="loadingTitle">
+            Inicializando análise...
+        </h2>
+
+
+        <p
+            id="loadingSubtitle"
+            class="subtitle"
+        >
+            Por favor, aguarde.
+        </p>
+
+
+        <div class="progress loading-progress">
+
+            <div
+                id="loadingBar"
+                class="progress-bar"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= RESULTADO ================= -->
+
+    <section
+        id="result"
+        class="screen"
+    >
+
+        <div class="success">
+            ✓ ANÁLISE CONCLUÍDA
+        </div>
+
+
+        <div
+            id="score"
+            class="score"
+        >
+            99,8%
+        </div>
+
+
+        <div class="score-label">
+            COMPATIBILIDADE DETECTADA
+        </div>
+
+
+        <div class="danger">
+            DIAGNÓSTICO:
+            PERIGOSAMENTE COMPATÍVEIS.
+        </div>
+
+
+
+        <div class="result-card">
+
+            <div class="warning">
+                ⚠ INCONSISTÊNCIA NOS DADOS
+            </div>
+
+
+            <p>
+                O algoritmo identificou
+                uma inconsistência crítica.
+            </p>
+
+
+            <p>
+                Após análise dos dados disponíveis,
+                foi constatado que o paciente:
+            </p>
+
+
+            <div class="big-diagnosis">
+                GABRIEL ERROU RUDE.
+            </div>
+
+
+            <p class="small">
+                Nível de evidência: 99,9%<br>
+                Possibilidade de contestação: 0,1%
+            </p>
+
+
+            <hr>
+
+
+            <h3>
+                🩺 Diagnóstico
+            </h3>
+
+
+            <p>
+                <strong>
+                    Gabriel está errado.
+                </strong>
+            </p>
+
+
+            <h3>
+                💊 Tratamento recomendado
+            </h3>
+
+
+            <p>
+                1. Um pedido sincero de desculpas<br>
+                2. Uma conversa sem orgulho<br>
+                3. Honestidade em dose máxima<br>
+                4. Uma nova oportunidade,
+                caso a paciente autorize ❤️
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary"
+            onclick="openMessage()"
+        >
+            ♡ ABRIR MENSAGEM
+        </button>
+
+    </section>
+
+
+
+    <!-- ================= MENSAGEM ================= -->
+
+    <section
+        id="message"
+        class="screen"
+    >
+
+        <div class="heart small-heart">
+            ♡
+        </div>
+
+
+        <div class="eyebrow">
+            MENSAGEM DO PACIENTE
+        </div>
+
+
+        <div class="message-card">
+
+            <p id="messageText"></p>
+
+        </div>
+
+
+        <div class="signature">
+            — Gabriel ❤️
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>
