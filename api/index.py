@@ -6,7 +6,6 @@ app = Flask(
     static_folder="../static"
 )
 
-
 QUESTIONS = [
     "Comida favorita",
     "Programa ideal juntos para essa semana",
@@ -20,11 +19,9 @@ QUESTIONS = [
 
 
 def calcular_compatibilidade(respostas):
-
     try:
         quimica = float(respostas.get("7", 5))
         confianca = float(respostas.get("8", 5))
-
     except (ValueError, TypeError):
         quimica = 5
         confianca = 5
@@ -36,29 +33,22 @@ def calcular_compatibilidade(respostas):
 
 @app.route("/")
 def index():
-
     return render_template("index.html")
 
 
 @app.route("/enviar", methods=["POST"])
 def receber_respostas():
-
     dados = request.get_json(silent=True)
 
     if not dados:
-
         return jsonify({
             "success": False,
             "message": "Nenhum dado recebido."
         }), 400
 
-
     respostas = dados.get("respostas", {})
 
-    compatibilidade = calcular_compatibilidade(
-        respostas
-    )
-
+    compatibilidade = calcular_compatibilidade(respostas)
 
     return jsonify({
         "success": True,
